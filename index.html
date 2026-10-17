@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f1e9">
+  <title>Suresh Gents Beauty Parlor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand-mark" aria-hidden="true">S</div>
+      <div class="brand-text"><strong>Suresh Gents Beauty Parlor</strong><span>DAILY SALON BOOK</span></div>
+      <div class="header-date"><span class="today-dot"></span><span id="header-date"></span></div>
+    </header>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-button active" data-page="entry"><span class="nav-symbol">＋</span><span>Today</span></button>
+      <button class="nav-button" data-page="people"><span class="nav-symbol">♙</span><span>People</span></button>
+      <button class="nav-button" data-page="summary"><span class="nav-symbol">▤</span><span>Summary</span></button>
+    </nav>
+
+    <main>
+      <section id="page-entry" class="page active">
+        <div class="page-intro"><p class="kicker">TODAY’S WORK</p><h1>Record a service</h1><p class="intro-copy">Add who did the work and the amount.</p></div>
+        <div class="date-strip"><button id="prev-date" class="date-step" aria-label="Previous day">‹</button><span class="calendar-glyph">▦</span><input type="date" id="entry-date" aria-label="Entry date"><button id="next-date" class="date-step" aria-label="Next day">›</button><button id="today-entry" class="today-button">Today</button></div>
+
+        <section class="entry-panel">
+          <form id="entry-form">
+            <div class="field-block person-step"><label for="person-name">Step 1 · Who did the service?</label><select id="person-name" required><option value="">Select a person to begin</option></select><button type="button" class="text-link" data-page="people">＋ Add a worker or change owner</button></div>
+            <div id="entry-details" class="entry-details"><div class="field-block amount-block"><label for="cost">Step 2 · Service amount</label><div class="amount-input"><span>₹</span><input id="cost" type="number" min="1" max="1000000" step="1" inputmode="numeric" placeholder="0" required></div></div>
+              <div class="live-split" id="live-split"><div class="split-title"><span class="split-status"></span><span id="split-title-text">Your earnings split will appear here</span></div><div class="split-values" id="split-values"></div></div>
+              <div class="field-block description-block"><label for="description">Step 3 · What was the service? <span>Optional</span></label><input id="description" type="text" maxlength="120" placeholder="e.g. Haircut, shaving"></div>
+              <button class="save-button" type="submit">Save entry <span>→</span></button>
+            </div>
+          </form>
+        </section>
+
+        <section class="today-list-section"><div class="section-title"><div><h2>Entries for this day</h2><p id="entries-caption">Nothing recorded yet</p></div><div class="entry-list-tools"><label class="visually-hidden" for="entries-person-filter">Filter entries by person</label><select id="entries-person-filter" class="people-filter"><option value="all">All people</option></select><span id="entry-count" class="count-pill">0</span></div></div><div id="entry-list" class="entry-list"></div><div id="entry-empty" class="empty-state"><span class="empty-symbol">＋</span><strong>Your first entry starts here</strong><p>Saved work will show up in this list.</p></div></section>
+      </section>
+
+      <section id="page-people" class="page">
+        <div class="page-intro"><p class="kicker">YOUR TEAM</p><h1>People & roles</h1><p class="intro-copy">Set who works here. Their role sets the pay split.</p></div>
+        <section class="entry-panel people-panel"><form id="person-form"><div class="field-block"><label for="new-person-name">Person’s name</label><input id="new-person-name" type="text" maxlength="60" placeholder="Enter a name" required></div><fieldset class="role-field"><legend>Choose their role</legend><div class="role-options"><label class="role-option selected" id="worker-role-option"><input type="radio" name="role" value="Worker" checked><span class="role-check">✓</span><span><strong>Worker</strong><small>Earns half of their work</small></span><b>50%</b></label><label class="role-option" id="owner-role-option"><input type="radio" name="role" value="Owner"><span class="role-check">✓</span><span><strong>Owner</strong><small>Keeps all of their work</small></span><b>100%</b></label></div></fieldset><p class="role-note" id="role-note">There is one owner profile. Choosing Owner updates the existing owner’s name.</p><button class="save-button" type="submit" id="person-submit">Add worker <span>＋</span></button></form></section>
+        <section class="roster-section"><div class="section-title"><div><h2>On the team</h2><p id="people-caption">1 person</p></div></div><div id="roster-list" class="roster-list"></div></section>
+      </section>
+
+      <section id="page-summary" class="page">
+        <div class="page-intro"><p class="kicker">DAILY TOTALS</p><h1>Day summary</h1><p class="intro-copy">A simple view of today’s earnings and shares.</p></div>
+        <div class="date-strip summary-date-strip"><button id="prev-summary-date" class="date-step" aria-label="Previous day">‹</button><span class="calendar-glyph">▦</span><input type="date" id="summary-date" aria-label="Summary date"><button id="next-summary-date" class="date-step" aria-label="Next day">›</button><button id="today-summary" class="today-button">Today</button></div>
+        <section class="total-panel"><span>FULL VALUE OF SERVICES</span><strong id="total-revenue">₹0</strong><small id="summary-entry-count">0 entries</small></section>
+        <section class="owner-take-panel"><span class="owner-medallion" id="owner-initial">S</span><div class="owner-copy"><small>OWNER TAKES HOME</small><strong id="owner-total">₹0</strong><span>Owner’s work + salon share from workers</span></div></section>
+        <section class="breakdown-section"><div class="section-title"><div><h2>Where the money goes</h2><p>Worker services are split 50 / 50.</p></div></div><div class="breakdown-panel"><div class="breakdown-row"><span class="row-dot owner-dot"></span><span class="row-label"><strong>Owner’s own services</strong><small>Owner keeps 100%</small></span><b id="owner-own">₹0</b></div><div class="breakdown-row"><span class="row-dot worker-dot"></span><span class="row-label"><strong>Workers’ earnings</strong><small>Workers receive 50%</small></span><b id="worker-total">₹0</b></div><div class="breakdown-row"><span class="row-dot salon-dot"></span><span class="row-label"><strong>Salon share from workers</strong><small>Salon keeps the other 50%</small></span><b id="owner-from-team">₹0</b></div></div></section>
+        <section class="by-person-section"><div class="section-title"><div><h2>Earned by each person</h2><p>For the selected day.</p></div></div><div id="people-summary" class="people-summary"></div><div id="summary-empty" class="empty-state"><span class="empty-symbol">▤</span><strong>No work on this day</strong><p>Record a service to see earnings here.</p><button class="empty-action" data-page="entry">＋ Record a service</button></div></section>
+      </section>
+    </main>
+    <footer class="app-footer"><span>Suresh Gents Beauty Parlor</span><span>Saved on this device</span></footer>
+  </div>
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
